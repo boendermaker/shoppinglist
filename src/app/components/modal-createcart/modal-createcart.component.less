@@ -1,0 +1,36 @@
+.bgwrapper {
+    position: fixed;
+    z-index: 9998;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    opacity: .5;
+}
+
+.modalwrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 95%;
+    height: 95%;
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(10px 10px 15px #000);
+}
+
+.modalheadcontainer {
+    margin: inherit;
+    padding: inherit;
+}
+
+.modalcontentcontainer {
+    flex: 1 1 auto;
+    overflow-y: scroll !important;
+}
+
+.modalbuttoncontainer {
+    align-self: flex-end;
+}

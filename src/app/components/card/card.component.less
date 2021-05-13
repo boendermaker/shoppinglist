@@ -1,0 +1,45 @@
+@import url("../../../colorvars.less");
+@import url("../../../_elevation.less");
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    margin-bottom: 24px;
+    padding: 0;
+    background: @white;
+
+    &--border {
+        border: none;
+        border-radius: 5px;
+    }
+
+    &__headcontainer {
+        margin: 0;
+        padding: 0;
+    }
+
+    &__contentcontainer {
+        flex: 1 1 auto;
+        margin: 0;
+        padding: 0;
+        overflow-y: scroll !important;
+        background: @lightgrey;
+    }
+
+    &__infocontainer {
+        margin: 0;
+        padding: 0;
+        background: @infogrey;
+    }
+
+    &__buttoncontainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin: 0;
+        padding: 0;
+        background: @white;
+    }
+
+}

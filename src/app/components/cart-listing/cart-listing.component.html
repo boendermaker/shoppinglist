@@ -1,0 +1,24 @@
+<div>
+
+    <div class="nodatawrapper" *ngIf="listcarts_all?.length <= 0">
+        <div class="nodatamodal">Keine Todos</div>
+    </div>
+
+    <div class="container-fluid mb-40 smallgutters">
+        <div class="row" *ngFor="let rowitem of listcarts_grid; let i = index">
+            <div class="col-md-4" *ngFor="let listitem of rowitem; let c = index">
+                <card>
+                    <h2 slot="headline">{{listitem?.title}}</h2>
+                    <div slot="content">{{listitem?.description}}</div>
+                    <div slot="info">Einträge: {{listitem?.info?.itemcount}} | Erledigt: {{listitem?.info?.itemsdone}}</div>
+                    <div slot="actions">
+                        <actionbutton class="mr-10" src="../../../assets/bs-goto.svg" (click)="goToCartItems(listitem?.id)"></actionbutton>
+                        <actionbutton class="mr-10" src="../../../assets/bs-edit.svg" (click)="emitOpenModalUpdate(listitem)"></actionbutton>
+                        <actionbutton src="../../../assets/bs-trash.svg" (click)="emitOpenModalDelete(listitem?.id)"></actionbutton>
+                    </div>
+                </card>
+            </div>
+        </div>
+    </div>
+
+</div>

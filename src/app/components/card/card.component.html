@@ -1,0 +1,14 @@
+<div class="card card--border elevation-3dp">
+    <div class="card__headcontainer p-20">
+        <ng-content select="[slot=headline]"></ng-content>
+    </div>
+    <div class="card__contentcontainer p-20">
+        <ng-content select="[slot=content]"></ng-content>
+    </div>
+    <div class="card__infocontainer p-10 pl-20">
+        <ng-content select="[slot=info]"></ng-content>
+    </div>
+    <div class="card__buttoncontainer p-10">
+        <ng-content select="[slot=actions]"></ng-content>
+    </div>
+</div>

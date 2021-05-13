@@ -1,0 +1,44 @@
+<div class="bgwrapper b-lightgray"></div>
+<div class="modalwrapper fadein b-white modalborder">
+    <div class="modalheadcontainer p-20">
+        <h1>Einkaufliste bearbeiten</h1>
+    </div>
+    <div class="modalcontentcontainer b-lightgrey p-20">
+
+        <form #f="ngForm" name="f">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Bezeichnung der Einkaufsliste</h3>
+                <input type="text" name="title" ngModel 
+                #title="ngModel" 
+                [ngModel]="payload_update.title"
+                required 
+                pattern="[A-Za-z0-9äüöÄÜÖß ]{1,255}" 
+                [className]="title.errors?.pattern ? 'errorform' : ''" 
+                />
+                <p *ngIf="title.errors?.pattern">Nur Buchstaben und Zahlen und max 100 Zeichen.</p>
+                <p *ngIf="!title.errors?.pattern">---</p>
+            </div>
+        </div>
+        <div class="row m-b-20">
+            <div class="col-md-12">
+                <h3>Beschreibung</h3>
+                <textarea class="textareaheight" name="description" rows="4" ngModel required 
+                #description="ngModel" 
+                [ngModel]="payload_update.description"
+                pattern="[a-zA-Z0-9öäüÖÄÜß!?%&amp;()=:;#*+-&euro;&quot;\[\n\r\] ]{1,300}"
+                [className]="description.errors?.pattern ? 'textareaheight errorform' : 'textareaheight'" 
+                ></textarea>
+                <p *ngIf="description.errors?.pattern">Keine unerlaubten Zeichen und max 300 Zeichen.</p>
+                <p *ngIf="!description.errors?.pattern">---</p>
+            </div>
+        </div>
+        </form>
+
+    </div>
+
+    <div class="modalbuttoncontainer p-20 d-flex justify-content-end">
+        <button class="button_light mr-20" (click)="emitOnClose()">Abbrechen</button><button class="button" (click)="emitOnUpdate(f.value)">Aktualisieren</button>
+    <div>
+
+</div>

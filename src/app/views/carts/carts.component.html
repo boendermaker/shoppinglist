@@ -1,0 +1,43 @@
+<div class="loadwrapper fadein" *ngIf="loading">
+    <div class="loaditem">
+        <img src="../assets/loader.svg" border="0" width="200" height="200" />
+    </div>
+</div>
+
+<modal-updatecart *ngIf="modal.update"
+    [payload_update]="payload_update"
+    (onupdate)="updateCart($event)"
+    (onclose)="closeModalUpdate()"
+></modal-updatecart>
+
+<modal-createcart *ngIf="modal.create"
+    [payload_create]="payload_create"
+    (oncreate)="createCart($event)"
+    (onclose)="closeModalCreate()"
+></modal-createcart>
+
+<modal-delete *ngIf="modal.delete"
+    [payload_delete]="payload_delete"
+    (ondelete)="deleteCart($event)"
+    (onclose)="closeModalDelete()"
+></modal-delete>
+
+<headerbar>
+    <h1 slot="headline">Einkaufszettel</h1>
+    <h4 slot="title">---</h4>
+</headerbar>
+
+<div class="container-fluid smallgutters">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                <cart-listing
+                    (onmodalupdate)="openModalUpdate($event)"
+                    (onmodaldelete)="openModalDelete($event)"
+                ></cart-listing>
+            </div>
+        </div>
+</div>
+
+<div class="btn-create">
+    <actionbutton src="../../../assets/bs-add.svg" (click)="openModalCreate()"></actionbutton>
+</div>

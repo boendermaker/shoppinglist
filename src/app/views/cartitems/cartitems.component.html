@@ -1,0 +1,44 @@
+<div class="loadwrapper fadein" *ngIf="loading">
+    <div class="loaditem">
+        <img src="../assets/loader.svg" border="0" width="200" height="200" />
+    </div>
+</div>
+
+<modal-updatecartitem *ngIf="modal.update"
+    [payload_update]="payload_update"
+    (onupdate)="updateCartItem($event)"
+    (onclose)="closeModalUpdate()"
+></modal-updatecartitem>
+
+<modal-createcartitem *ngIf="modal.create"
+    [payload_create]="payload_create"
+    (oncreate)="createCartItem($event)"
+    (onclose)="closeModalCreate()"
+></modal-createcartitem>
+
+<modal-delete *ngIf="modal.delete"
+    [payload_delete]="payload_delete"
+    (ondelete)="deleteCartItem($event)"
+    (onclose)="closeModalDelete()"
+></modal-delete>
+
+<headerbar>
+    <h1 slot="headline">Einkaufliste</h1>
+    <h4 slot="title">Für Einkaufszettel: {{cart?.title}}</h4>
+</headerbar>
+
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                    <item-listing
+                        (ontoggledone)="toggleCartItem($event)"
+                        (onmodalupdate)="openModalUpdate($event)"
+                        (onmodaldelete)="openModalDelete($event)"
+                    ></item-listing>
+            </div>
+        </div>
+</div>
+
+<div class="btn-create">
+    <actionbutton src="../../../assets/bs-add.svg" (click)="openModalCreate()"></actionbutton>
+</div>

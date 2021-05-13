@@ -1,0 +1,24 @@
+@import url("../../../colorvars.less");
+@import url("../../../_elevation.less");
+
+.actionbuttoncontainer {
+    display: inline-block;
+    width: 38px;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    background: @button_default;
+    box-shadow: @elevation-3dp;
+
+    &:hover{
+        background: @button_hover;
+        box-shadow: @elevation-1dp;
+    }
+
+    img {
+        width: 100%;
+        vertical-align: middle;
+    }
+
+}
