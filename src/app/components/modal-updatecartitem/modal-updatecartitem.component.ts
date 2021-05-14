@@ -14,10 +14,13 @@ export class ModalUpdateCartItemComponent implements OnInit {
     @Output() onupdate: EventEmitter<any> = new EventEmitter<any>();
     @Output() onclose: EventEmitter<any> = new EventEmitter<any>();
 
+    @ViewChild("imagefileinput")
+    public imagefileinput: ElementRef;
+
     @ViewChild("itemimage")
     public itemimage: ElementRef;
-
-    private imageData: any = '';
+   
+    private imageData: any = null;
 
     constructor(private apiService: ApiService,
                 private store: StoreService) {
@@ -54,6 +57,12 @@ export class ModalUpdateCartItemComponent implements OnInit {
             this.imageData = res;
             this.itemimage.nativeElement.src = res;
         })
+    }
+
+    deleteImage() {
+        this.imageData = null;
+        this.itemimage.nativeElement.src = '';
+        this.imagefileinput.nativeElement.val = '';
     }
 
 }

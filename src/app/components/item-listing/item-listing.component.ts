@@ -13,13 +13,18 @@ export class ItemListingComponent implements OnInit {
     @Output() onmodalupdate: EventEmitter<any> = new EventEmitter<any>();
     @Output() onmodaldelete: EventEmitter<any> = new EventEmitter<any>();
 
+    subscriptions$ = [];
     listcartitems_all = [];
 
     constructor(private apiService: ApiService,
                 private store: StoreService) { }
 
     ngOnInit() {
-        this.store.stream('listcartitems_all').subscribe(res => this.listcartitems_all = res);
+        this.subscriptions$.push(this.store.stream('listcartitems_all').subscribe(res => this.listcartitems_all = res));
+    }
+
+    ngOnDestroy() {
+        this.subscriptions$.forEach((subscription) => subscription.unsubscribe());
     }
 
     emitToggleDone($event) {

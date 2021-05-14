@@ -4,13 +4,16 @@
         <div class="nodatamodal">Keine Todos</div>
     </div>
 
-    <div class="container-fluid mb-40 smallgutters">
+    <div class="container-fluid mb-60 smallgutters">
         <div class="row" *ngFor="let rowitem of listcarts_grid; let i = index">
-            <div class="col-md-4" *ngFor="let listitem of rowitem; let c = index">
+            <div class="col-lg-4" *ngFor="let listitem of rowitem; let c = index">
                 <card>
                     <h2 slot="headline">{{listitem?.title}}</h2>
                     <div slot="content">{{listitem?.description}}</div>
-                    <div slot="info">Einträge: {{listitem?.info?.itemcount}} | Erledigt: {{listitem?.info?.itemsdone}}</div>
+                    <div slot="info">
+                        <img src="../../../assets/bs-list.svg" class="infoicon" />&nbsp;<span class="infotext">{{listitem?.info?.itemcount}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img src="../../../assets/bs-list-check.svg" class="infoicon" />&nbsp;<span class="infotext">{{listitem?.info?.itemsdone}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img src="../../../assets/bs-date.svg" class="infoicon" />&nbsp;<span class="infotext">{{listitem?.timestamp * 1000 | date:"dd.MM.yy"}}</span></div>
                     <div slot="actions">
                         <actionbutton class="mr-10" src="../../../assets/bs-goto.svg" (click)="goToCartItems(listitem?.id)"></actionbutton>
                         <actionbutton class="mr-10" src="../../../assets/bs-edit.svg" (click)="emitOpenModalUpdate(listitem)"></actionbutton>

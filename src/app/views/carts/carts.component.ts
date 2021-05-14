@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 
 export class CartsComponent implements OnInit {
 
+    subscriptions$ = [];
     loading = false;
     payload_delete = 0;
     payload_create = null;
@@ -25,13 +26,17 @@ export class CartsComponent implements OnInit {
                 private store: StoreService) { }
 
     ngOnInit() {
-        this.store.stream('loading').subscribe(res => this.loading = res);
+        this.subscriptions$.push(this.store.stream('loading').subscribe(res => this.loading = res));
         this.loadCartListing();
+    }
+
+    ngOnDestroy() {
+        this.subscriptions$.forEach((subscription) => subscription.unsubscribe());
     }
 
     loadCartListing() {
         this.store.add('loading', true);
-        this.apiService.getAllCarts().pipe(map((res) => {
+        this.subscriptions$.push(this.apiService.getAllCarts().pipe(map((res) => {
 
             Object.entries(res).forEach((v) => {
                 let cartItem = v[1];
@@ -49,7 +54,7 @@ export class CartsComponent implements OnInit {
         })).subscribe((res) => {
             this.store.add('listcarts_all', res);
             this.store.add('loading', false);
-        });
+        }));
     }
 
     
@@ -60,18 +65,18 @@ export class CartsComponent implements OnInit {
         const payload = {id: id, done: done};
         
         this.store.add('loading', true);
-        this.apiService.toggleCart(payload).subscribe((res) => {
+        this.subscriptions$.push(this.apiService.toggleCart(payload).subscribe((res) => {
             this.store.add('loading', false);
             this.loadCartListing();
         },
         (err) => { 
             this.store.add('loading', false);
-        });
+        }));
     }
 
     deleteCart($event) {
         this.store.add('loading', true);
-        this.apiService.deleteCart($event).subscribe((res) => {
+        this.subscriptions$.push(this.apiService.deleteCart($event).subscribe((res) => {
             this.store.add('loading', false);
             this.loadCartListing();
             this.closeModalDelete();
@@ -79,12 +84,12 @@ export class CartsComponent implements OnInit {
         (err) => { 
             this.store.add('loading', false);
             this.closeModalDelete();
-        });
+        }));
     }
 
     createCart($event) {
         this.store.add('loading', true);
-        this.apiService.createCart($event).subscribe((res) => {
+        this.subscriptions$.push(this.apiService.createCart($event).subscribe((res) => {
             this.store.add('loading', false);
             this.loadCartListing();
             this.closeModalCreate();
@@ -93,13 +98,13 @@ export class CartsComponent implements OnInit {
             console.log(err)
             this.store.add('loading', false);
             this.closeModalCreate();
-        });
+        }));
     }
 
     updateCart($event) {
         console.log($event)
         this.store.add('loading', true);
-        this.apiService.updateCart($event).subscribe((res) => {
+        this.subscriptions$.push(this.apiService.updateCart($event).subscribe((res) => {
             this.store.add('loading', false);
             this.loadCartListing();
             this.closeModalUpdate();
@@ -109,7 +114,7 @@ export class CartsComponent implements OnInit {
             this.store.add('loading', false);
             this.loadCartListing();
             this.closeModalUpdate();
-        });
+        }));
     }
 
     ctrlModal(name, todo) {

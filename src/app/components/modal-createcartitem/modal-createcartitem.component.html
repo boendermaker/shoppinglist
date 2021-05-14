@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>Titel</h3>
-                <input type="text" name="title" ngModel 
+                <input type="text" name="title" autocomplete="off" ngModel 
                 #title="ngModel" 
                 required 
                 pattern="[A-Za-z0-9äüöÄÜÖß ]{1,255}" 
@@ -37,9 +37,10 @@
                 <div class="imagecontainer">
                     <input #imagefileinput class="fileinput" type="file" accept="image/*" capture="" (change)="processImage($event)" />
                     <img #itemimage src="" class="img mb-20" />
-                </div>
-                <div class="actionscontainer d-flex justify-content-end">
-                    <actionbutton src="../../../assets/bs-add.svg" title="Bild hinzufügen" class="filebutton" (click)="imagefileinput.click()"></actionbutton>
+                    <div class="actionscontainer d-flex justify-content-end">
+                        <actionbutton src="../../../assets/bs-add.svg" title="Bild hinzufügen" class="filebutton mr-10" (click)="imagefileinput.click()"></actionbutton>
+                        <actionbutton src="../../../assets/bs-trash.svg" title="Bild entfernen" class="filebutton" (click)="deleteImage()"></actionbutton>
+                    </div>
                 </div>
             </div>
         </div>

@@ -12,9 +12,12 @@ export class ModalCreateCartItemComponent implements OnInit {
     @Output() oncreate: EventEmitter<any> = new EventEmitter<any>();
     @Output() onclose: EventEmitter<any> = new EventEmitter<any>();
 
-    @ViewChild("itemimage")
-    public imageitem: ElementRef;
+    @ViewChild("imagefileinput")
+    public imagefileinput: ElementRef;
 
+    @ViewChild("itemimage")
+    public itemimage: ElementRef;
+   
     private imageData: any = null;
 
     constructor(public domSanitizer: DomSanitizer) { }
@@ -34,8 +37,14 @@ export class ModalCreateCartItemComponent implements OnInit {
     processImage($event) {
         Helper.getBase64ImageData($event).then((res) => {
             this.imageData = res;
-            this.imageitem.nativeElement.src = res;
+            this.itemimage.nativeElement.src = res;
         })
+    }
+
+    deleteImage() {
+        this.imageData = null;
+        this.itemimage.nativeElement.src = '';
+        this.imagefileinput.nativeElement.val = '';
     }
 
 }

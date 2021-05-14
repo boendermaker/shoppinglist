@@ -1,4 +1,5 @@
 @import '../../../colorvars.less';
+@import '../../../_elevation.less';
 
 .bgwrapper {
     position: fixed;
@@ -37,22 +38,22 @@
     align-self: flex-end;
 }
 
-.filebutton {
-    position: absolute;
-    top:20px;
-    right: 20px;
-}
-
 .imagecontainer {
     position: relative;
-    min-height: 100px;
     margin: 0;
     padding: 10px;
     background: @white;
-    border: 1px dashed @black;
+    border: 1px solid @bordercolor;
+    border-radius: 5px;
+    box-shadow: @elevation-1dp;
 }
 
 .fileinput {
     position: fixed;
     top: -9000px;
+}
+
+.actionscontainer {
+    margin: 0;
+    padding: 0;
 }
