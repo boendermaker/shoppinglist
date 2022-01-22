@@ -5,14 +5,13 @@
     </div>
 
     <div *ngIf="listcartitems_all?.length > 0">
-        <datarow *ngFor="let listitem of listcartitems_all; let i = index">
+        <datarow *ngFor="let listitem of listcartitems_all; let i = index" [id]="(listcartitems_all?.length-1 == i ? 'lastitem' : '')" >
             <img class="icon-medium" src="../../../assets/bs-unknown.svg" slot="icon" *ngIf="+listitem?.done === 0" />
             <img class="icon-medium" src="../../../assets/bs-check-badge-fill.svg" slot="icon" *ngIf="+listitem?.done === 1" />
             <h2 slot="title">{{listitem?.title}}</h2>
-            <span slot="description">{{listitem?.description}}</span>
-            <actionbutton class="mr-10" src="../../../assets/bs-check.svg" slot="actions" (click)="emitToggleDone({id: listitem?.id, done: listitem?.done})"></actionbutton>
-            <actionbutton class="mr-10" src="../../../assets/bs-edit.svg" slot="actions" (click)="emitOpenModalUpdate(listitem)"></actionbutton>
-            <actionbutton src="../../../assets/bs-trash.svg" slot="actions" (click)="emitOpenModalDelete(listitem?.id)"></actionbutton>
+            <actionbutton class="mr-10" src="../../../assets/bs-check.svg" slot="actions" (click)="emitToggleDone({id: listitem?.id, done: listitem?.done})" title="Erledigt markieren"></actionbutton>
+            <actionbutton class="mr-10" src="../../../assets/bs-edit.svg" slot="actions" (click)="emitOpenModalUpdate(listitem)" title="Ansehen/Bearbeiten"></actionbutton>
+            <actionbutton src="../../../assets/bs-trash.svg" slot="actions" (click)="emitOpenModalDelete({id: listitem?.id})" title="Löschen"></actionbutton>
         </datarow>
     </div>
 

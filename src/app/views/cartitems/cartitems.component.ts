@@ -37,7 +37,7 @@ export class CartItemsComponent implements OnInit {
                 private router: Router) { 
 
         this.$urlParamSubject = this.route.params.subscribe(params => {
-            this.cartid = +params['cartid'];
+            this.cartid = params['cartid'];
         });
 
     }
@@ -106,6 +106,7 @@ export class CartItemsComponent implements OnInit {
             this.store.add('loading', false);
             this.loadCartItemListing();
             this.closeModalCreate();
+            window.scrollTo(0,document.body.scrollHeight);
         },
         (err) => { 
             console.log(err)

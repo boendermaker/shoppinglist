@@ -13,6 +13,7 @@ export class CartListingComponent implements OnInit {
 
     @Output() onmodalupdate: EventEmitter<any> = new EventEmitter<any>();
     @Output() onmodaldelete: EventEmitter<any> = new EventEmitter<any>();
+    @Output() onmodalcopy: EventEmitter<any> = new EventEmitter<any>();
 
     subscriptions$ = [];
     listcarts_all = [];
@@ -43,6 +44,10 @@ export class CartListingComponent implements OnInit {
 
     emitOpenModalDelete($event) {
         this.onmodaldelete.emit($event);
+    }
+
+    emitOpenModalCopy($event) {
+        this.onmodalcopy.emit($event);
     }
 
 }

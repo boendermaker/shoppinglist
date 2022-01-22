@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class ApiService {
-    _baseUrl = 'https://cart.boendermaker.de/api/';
+    _baseUrl = 'https://list.boendermaker.de/api/';
 
     constructor(private http: HttpClient) { }
 
@@ -65,12 +65,16 @@ export class ApiService {
         return this.http.post(`${this._baseUrl}?action=updatecartitem`, JSON.stringify(payload), this._getHeaders());
     }
 
+    copyCart(payload) {
+        return this.http.post(`${this._baseUrl}?action=copycart`, JSON.stringify(payload), this._getHeaders());
+    }
+
     deleteCart(payload) {
-        return this.http.post(`${this._baseUrl}?action=deletecart`, JSON.stringify({"id": payload}), this._getHeaders());
+        return this.http.post(`${this._baseUrl}?action=deletecart`, JSON.stringify(payload), this._getHeaders());
     }
 
     deleteCartItem(payload) {
-        return this.http.post(`${this._baseUrl}?action=deletecartitem`, JSON.stringify({"id": payload}), this._getHeaders());
+        return this.http.post(`${this._baseUrl}?action=deletecartitem`, JSON.stringify(payload), this._getHeaders());
     }
 
 }

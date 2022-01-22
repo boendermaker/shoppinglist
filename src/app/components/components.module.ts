@@ -6,6 +6,7 @@ import { CartListingComponent } from './cart-listing/cart-listing.component';
 import { ItemListingComponent } from './item-listing/item-listing.component';
 import { HeaderbarComponent } from './headerbar/headerbar.component';
 import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
+import { ModalCopyComponent } from './modal-copy/modal-copy.component';
 import { ModalCreateCartComponent } from './modal-createcart/modal-createcart.component';
 import { ModalUpdateCartComponent } from './modal-updatecart/modal-updatecart.component';
 import { ModalCreateCartItemComponent } from './modal-createcartitem/modal-createcartitem.component';
@@ -21,6 +22,7 @@ import { DataRowComponent } from './datarow/datarow.component';
     ItemListingComponent,
     HeaderbarComponent,
     ModalDeleteComponent,
+    ModalCopyComponent,
     ModalCreateCartComponent,
     ModalUpdateCartComponent,
     ModalCreateCartItemComponent,
@@ -38,6 +40,7 @@ import { DataRowComponent } from './datarow/datarow.component';
     ItemListingComponent,
     HeaderbarComponent,
     ModalDeleteComponent,
+    ModalCopyComponent,
     ModalCreateCartComponent,
     ModalUpdateCartComponent,
     ModalCreateCartItemComponent,

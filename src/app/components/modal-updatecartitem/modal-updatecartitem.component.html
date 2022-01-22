@@ -1,14 +1,14 @@
 <div class="bgwrapper b-lightgray"></div>
 <div class="modalwrapper fadein b-white modalborder">
     <div class="modalheadcontainer p-20">
-        <h1>Einkaufliste bearbeiten</h1>
+        <h1>Eintrag bearbeiten</h1>
     </div>
     <div class="modalcontentcontainer b-lightgrey p-20">
 
         <form #f="ngForm" name="f">
         <div class="row">
             <div class="col-md-12">
-                <h3>Bezeichnung der Einkaufsliste</h3>
+                <h2>Bezeichnung</h2>
                 <input type="text" name="title" autocomplete="off" ngModel 
                 #title="ngModel" 
                 [ngModel]="payload_update.title"
@@ -22,7 +22,7 @@
         </div>
         <div class="row m-b-20">
             <div class="col-md-12">
-                <h3>Beschreibung</h3>
+                <h2>Beschreibung</h2>
                 <textarea class="textareaheight" name="description" rows="6" ngModel required 
                 #description="ngModel" 
                 [ngModel]="payload_update.description"
@@ -35,7 +35,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3>Produktbild</h3>
+                <h2>Produktbild</h2>
                 <div class="imagecontainer">
                     <input #imagefileinput class="fileinput" type="file" accept="image/*" capture="" (change)="processImage($event)" />
                     <img #itemimage src="" class="img mb-20" />

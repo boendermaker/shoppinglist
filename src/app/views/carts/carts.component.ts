@@ -16,10 +16,12 @@ export class CartsComponent implements OnInit {
     payload_delete = 0;
     payload_create = null;
     payload_update = null;
+    payload_copy = null;
     modal = {
         delete: false,
         create: null,
-        update: null
+        update: null,
+        copy: null
     };
 
     constructor(private apiService: ApiService,
@@ -40,13 +42,13 @@ export class CartsComponent implements OnInit {
 
             Object.entries(res).forEach((v) => {
                 let cartItem = v[1];
-                const payload = {"cartid": cartItem.id};
-                this.apiService.getCartItemInfo(payload).subscribe((x) => {
+                const payload = {"cartid": cartItem.cartid};
+                this.subscriptions$.push(this.apiService.getCartItemInfo(payload).subscribe((x) => {
                     cartItem.info = {
                         itemcount: x[0].itemcount,
                         itemsdone: x[1].itemsdone
                     }
-                });
+                }));
             });
             
             return res;
@@ -87,6 +89,20 @@ export class CartsComponent implements OnInit {
         }));
     }
 
+    copyCart($event) {
+        this.store.add('loading', true);
+        console.log($event)
+        this.subscriptions$.push(this.apiService.copyCart($event).subscribe((res) => {
+            this.store.add('loading', false);
+            this.loadCartListing();
+            this.closeModalCopy();
+        },
+        (err) => { 
+            this.store.add('loading', false);
+            this.closeModalCopy();
+        }));
+    }
+
     createCart($event) {
         this.store.add('loading', true);
         this.subscriptions$.push(this.apiService.createCart($event).subscribe((res) => {
@@ -102,7 +118,6 @@ export class CartsComponent implements OnInit {
     }
 
     updateCart($event) {
-        console.log($event)
         this.store.add('loading', true);
         this.subscriptions$.push(this.apiService.updateCart($event).subscribe((res) => {
             this.store.add('loading', false);
@@ -145,6 +160,15 @@ export class CartsComponent implements OnInit {
 
     closeModalDelete() {
         this.ctrlModal('delete', false);
+    }
+
+    openModalCopy($event) {
+        this.payload_copy = $event;
+        this.ctrlModal('copy', true);
+    }
+
+    closeModalCopy() {
+        this.ctrlModal('copy', false);
     }
 
 }

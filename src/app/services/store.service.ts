@@ -11,8 +11,7 @@ export class StoreService {
     create(namespace) {
         if(!this.subject$.hasOwnProperty(namespace)) {
             console.log(namespace)
-            //this.subject$[namespace] = new BehaviorSubject<Object>({});
-            this.subject$[namespace] = new Subject();
+            this.subject$[namespace] = new BehaviorSubject<Object>({});
         }else{
             console.log('Store: Namespace already exists');
         }

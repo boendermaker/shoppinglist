@@ -8,7 +8,7 @@
         <form #f="ngForm" name="f">
         <div class="row">
             <div class="col-md-12">
-                <h3>Titel</h3>
+                <h2>Titel</h2>
                 <input type="text" name="title" autocomplete="off" ngModel 
                 #title="ngModel" 
                 required 
@@ -21,7 +21,7 @@
         </div>
         <div class="row m-b-20">
             <div class="col-md-12">
-                <h3>Beschreibung</h3>
+                <h2>Beschreibung</h2>
                 <textarea class="textareaheight" name="description" rows="4" ngModel required 
                 #description="ngModel" 
                 pattern="[a-zA-Z0-9öäüÖÄÜß!?%&amp;()=:;#*+-&euro;&quot;\[\n\r\] ]{1,300}"
@@ -33,7 +33,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3>Produktbild</h3>
+                <h2>Produktbild</h2>
                 <div class="imagecontainer">
                     <input #imagefileinput class="fileinput" type="file" accept="image/*" capture="" (change)="processImage($event)" />
                     <img #itemimage src="" class="img mb-20" />

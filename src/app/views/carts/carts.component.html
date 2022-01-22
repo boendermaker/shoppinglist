@@ -22,6 +22,12 @@
     (onclose)="closeModalDelete()"
 ></modal-delete>
 
+<modal-copy *ngIf="modal.copy"
+    [payload_copy]="payload_copy"
+    (oncopy)="copyCart($event)"
+    (onclose)="closeModalCopy()"
+></modal-copy>
+
 <headerbar>
     <h1 slot="headline">Einkaufszettel</h1>
     <h4 slot="title">---</h4>
@@ -33,6 +39,7 @@
                 <cart-listing
                     (onmodalupdate)="openModalUpdate($event)"
                     (onmodaldelete)="openModalDelete($event)"
+                    (onmodalcopy)="openModalCopy($event)"
                 ></cart-listing>
             </div>
         </div>
