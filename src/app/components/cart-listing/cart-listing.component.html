@@ -1,7 +1,7 @@
 <div>
 
     <div class="nodatawrapper" *ngIf="listcarts_all?.length <= 0">
-        <div class="nodatamodal">Keine Todos</div>
+        <div class="nodatamodal">Es sind keine Elemente vorhanden</div>
     </div>
 
     <div class="container-fluid mb-60 smallgutters">
@@ -15,10 +15,10 @@
                         <img src="../../../assets/bs-list-check.svg" class="infoicon" />&nbsp;<span class="infotext">{{listitem?.info?.itemsdone}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
                         <img src="../../../assets/bs-date.svg" class="infoicon" />&nbsp;<span class="infotext">{{listitem?.timestamp * 1000 | date:"dd.MM.yy"}}</span></div>
                     <div slot="actions">
-                        <actionbutton class="mr-10" src="../../../assets/bs-goto.svg" (click)="goToCartItems(listitem?.cartid)" title="Zur Einkaufsliste"></actionbutton>
-                        <actionbutton class="mr-10" src="../../../assets/bs-edit.svg" (click)="emitOpenModalUpdate(listitem)" title="Zettel Bearbeiten"></actionbutton>
-                        <actionbutton class="mr-10" src="../../../assets/bs-copy.svg" (click)="emitOpenModalCopy({cartid: listitem?.cartid})" title="Zettel kopieren"></actionbutton>
-                        <actionbutton src="../../../assets/bs-trash.svg" (click)="emitOpenModalDelete({cartid: listitem?.cartid})" title="Zettel löschen"></actionbutton>
+                        <actionbutton class="mr-10" src="../../../assets/bs-goto.svg" (click)="goToCartItems(listitem?.cartid)" title="Liste öffnen"></actionbutton>
+                        <actionbutton class="mr-10" src="../../../assets/bs-edit.svg" (click)="emitOpenModalUpdate(listitem)" title="Liste bearbeiten"></actionbutton>
+                        <actionbutton class="mr-10" src="../../../assets/bs-copy.svg" (click)="emitOpenModalCopy({cartid: listitem?.cartid})" title="Liste kopieren"></actionbutton>
+                        <actionbutton src="../../../assets/bs-trash.svg" (click)="emitOpenModalDelete({cartid: listitem?.cartid})" title="Liste löschen"></actionbutton>
                     </div>
                 </card>
             </div>
